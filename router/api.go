@@ -18,11 +18,14 @@ func SetupRouter() *gin.Engine {
 			public.POST("/login", controllers.Login)
 			public.POST("/register", controllers.Signup)
 		}
+
 		protected := api.Group("/auth").Use(middlewares.Authz())
 		{
+			// User
 			protected.PUT("/users/:userid", controllers.UpdateUsers)
 			protected.DELETE("/users/:userid", controllers.DeleteUsers)
 
+			// Photo
 			protected.GET("/profile", controllers.Profile)
 			protected.GET("/photos", controllers.FindPhotos)
 			protected.POST("/photos", controllers.CreatePhoto)
