@@ -20,14 +20,14 @@ func SetupRouter() *gin.Engine {
 		}
 		protected := api.Group("/auth").Use(middlewares.Authz())
 		{
-			protected.PATCH("/users/:userid", controllers.UpdateUsers)
+			protected.PUT("/users/:userid", controllers.UpdateUsers)
 			protected.DELETE("/users/:userid", controllers.DeleteUsers)
 
 			protected.GET("/profile", controllers.Profile)
 			protected.GET("/photos", controllers.FindPhotos)
 			protected.POST("/photos", controllers.CreatePhoto)
 			protected.GET("/photos/:id", controllers.FindPhoto)
-			protected.PATCH("/photos/:id", controllers.UpdatePhoto)
+			protected.PUT("/photos/:id", controllers.UpdatePhoto)
 			protected.DELETE("/photos/:id", controllers.DeletePhoto)
 
 		}
